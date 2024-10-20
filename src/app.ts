@@ -1,9 +1,10 @@
 import express, { Request, Response } from "express";
+import "express-async-errors";
 import morgan from "morgan";
 import bodyParser from "body-parser";
 import cors from "cors";
 import routes from "./routes";
-import { errorHandler } from "./middlewares/errorHandler";
+import { errorHandler } from "./middlewares";
 
 const app = express();
 
