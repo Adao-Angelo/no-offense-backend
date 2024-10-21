@@ -1,10 +1,15 @@
 import { Router } from "express";
-// import { createUser, loginUser } from '../controllers/userController';
 
 const router = Router();
 
-// // Rotas de usuários
-// router.post('/', createUser); // Rota para cadastro de usuário
-// router.post('/login', loginUser); // Rota para login de usuário
+import { UserController } from "../modules/users/controllers";
+const userController = new UserController();
+
+router.post("/users", userController.createUser);
+router.get("/users/:id", userController.getUserById);
+router.get("/users/email/:email", userController.getUserByEmail);
+router.put("/users/:id", userController.updateUser);
+router.delete("/users/:id", userController.deleteUser);
+router.get("/users", userController.getAllUsers);
 
 export default router;
