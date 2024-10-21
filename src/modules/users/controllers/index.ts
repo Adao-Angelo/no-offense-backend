@@ -15,6 +15,7 @@ export class UserController {
   async createUser(req: Request, res: Response) {
     try {
       const data: CreateUserDTO = req.body;
+      console.log(data);
 
       const hashedPassword = await bcrypt.hash(data.password, SALT_ROUNDS);
 
