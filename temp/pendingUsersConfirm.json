@@ -1,1 +1,7 @@
-[{"name":"John Doe","email":"@gmail.com","password":"off"},{"name":"John Doe","email":"adaobegginer@gmail.com","password":"$2b$08$n.NwA/g0BxUshjUFr1v6feKr.ncYUcccqQtHENNzH7e1dMBxjttJ2"},{"name":"John Doe","email":"adaobegginer@gmail.com","password":"$2b$08$sCg9TzqIeO.sH6VhzpcLB.YkLBjaKvHVlnZ9snBAWQCjufaI2/Wai"},{"name":"John Doe","email":"adaobegginer@gmail.com","password":"$2b$08$w1coVFfIV0C6iz44T4O3wONGgTalHbodQZtDt89kPhhKhVVJeELHu"}]
+[
+  {
+    "name": "John Doe",
+    "email": "@gmail.com",
+    "password": "$2b$08$n.NwA/g0BxUshjUFr1v6feKr.ncYUcccqQtHENNzH7e1dMBxjttJ2"
+  }
+]

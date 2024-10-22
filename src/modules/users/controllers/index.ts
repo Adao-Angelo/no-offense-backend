@@ -50,6 +50,16 @@ export class UserController {
       }
     );
 
+    await SendVerificationEmails(data.email, token);
+
+    const userInPendingList = pendingUsers.filter((user) => {
+      user.email === data.email;
+    });
+
+    if (userInPendingList.length > 0) {
+      throw new AppError("User email already Exists");
+    }
+
     pendingUsers.push({
       name: data.name,
       email: data.email,
@@ -57,8 +67,6 @@ export class UserController {
     });
 
     fs.writeFileSync(pendingUsersPath, JSON.stringify(pendingUsers));
-
-    await SendVerificationEmails(data.email, token);
 
     res
       .status(200)
