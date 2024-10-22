@@ -7,31 +7,61 @@ import { UserRepository } from "../repositories";
 import { CreateUserDTO, UpdateUserDTO } from "../ types";
 import { AppError } from "../../../error";
 import bcrypt from "bcrypt";
+import path from "path";
+import fs from "fs";
+import jwt from "jsonwebtoken";
+import { fileURLToPath } from "url";
+import { SendVerificationEmails } from "../../../services/sendVerificationEmails";
 
 const userRepository = new UserRepository();
 const SALT_ROUNDS = Number(process.env.SALT_ROUNDS) || 8;
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const pendingUsersPath = path.join(
+  __dirname,
+  "../../../../temp/pendingUsersConfirm.json"
+);
+
 export class UserController {
   async createUser(req: Request, res: Response) {
     const data: CreateUserDTO = req.body;
-
-    const hashedPassword = await bcrypt.hash(data.password, SALT_ROUNDS);
 
     const user = await userRepository.findUserByEmail(data.email);
     if (user) {
       throw new AppError("User email already Exists");
     }
 
-    const newUser = await userRepository.createUser({
-      ...data,
+    let pendingUsers: CreateUserDTO[] = [];
+    if (fs.existsSync(pendingUsersPath)) {
+      const data = fs.readFileSync(pendingUsersPath, "utf-8");
+      pendingUsers = JSON.parse(data);
+    }
+
+    const hashedPassword = await bcrypt.hash(data.password, SALT_ROUNDS);
+
+    const token = jwt.sign(
+      { email: data.email },
+      process.env.JWT_SECRET as string,
+      {
+        expiresIn: "24h",
+      }
+    );
+
+    pendingUsers.push({
+      name: data.name,
+      email: data.email,
       password: hashedPassword,
     });
 
-    res.status(201).json(newUser);
+    fs.writeFileSync(pendingUsersPath, JSON.stringify(pendingUsers));
 
-    if (!newUser) {
-      throw new AppError("Error on create a user", 404);
-    }
+    SendVerificationEmails(data.email, token);
+
+    res
+      .status(200)
+      .json({ message: "User registered, check your email for verification" });
   }
 
   async getUserById(req: Request, res: Response) {
