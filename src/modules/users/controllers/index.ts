@@ -34,6 +34,7 @@ export class UserController {
     }
 
     let pendingUsers: CreateUserDTO[] = [];
+
     if (fs.existsSync(pendingUsersPath)) {
       const data = fs.readFileSync(pendingUsersPath, "utf-8");
       pendingUsers = JSON.parse(data);
@@ -57,7 +58,7 @@ export class UserController {
 
     fs.writeFileSync(pendingUsersPath, JSON.stringify(pendingUsers));
 
-    SendVerificationEmails(data.email, token);
+    await SendVerificationEmails(data.email, token);
 
     res
       .status(200)
