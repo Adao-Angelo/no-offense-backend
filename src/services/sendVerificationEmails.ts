@@ -1,5 +1,4 @@
 import { smtp } from "../config";
-import jwt from "jsonwebtoken";
 
 export async function SendVerificationEmails(email: string, token: string) {
   const url = `${process.env.APP_URL}/verify?token=${token}`;
