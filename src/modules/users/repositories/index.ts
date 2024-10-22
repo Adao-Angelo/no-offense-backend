@@ -14,7 +14,7 @@ export class UserRepository {
     });
   }
 
-  async findUserById(id: number) {
+  async findUserById(id: string) {
     return await prisma.users.findUnique({
       where: { id },
     });
@@ -26,14 +26,14 @@ export class UserRepository {
     });
   }
 
-  async updateUser(id: number, data: UpdateUserDTO) {
+  async updateUser(id: string, data: UpdateUserDTO) {
     return await prisma.users.update({
       where: { id },
       data,
     });
   }
 
-  async deleteUser(id: number) {
+  async deleteUser(id: string) {
     return await prisma.users.delete({
       where: { id },
     });

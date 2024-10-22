@@ -8,16 +8,15 @@ const fetchImageDescription = async (url: string): Promise<string> => {
   }
 
   try {
-    const response = await axios.get(serviceUrl, {
+    const response = await axios.get(`${serviceUrl}/process-image`, {
       params: {
         url: url,
       },
     });
-    return response.data.description;
+    return response.data[0].generated_text;
   } catch (error) {
-    console.error("Error fetching description:", error);
     throw new Error("Could not fetch description");
   }
 };
 
-export default fetchImageDescription;
+export { fetchImageDescription };

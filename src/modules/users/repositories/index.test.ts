@@ -1,6 +1,5 @@
-// src/tests/userRepository.test.ts
 import { describe, it, expect, beforeAll, afterAll } from "vitest";
-import { UserRepository } from "./";
+import { UserRepository } from ".";
 import { prisma } from "../../../config";
 
 const userRepository = new UserRepository();

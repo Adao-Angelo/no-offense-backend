@@ -8,7 +8,7 @@ datasource db {
 }
 
 model Users {
-  id           Int            @id @default(autoincrement())
+  id           String         @id @default(uuid())
   name         String
   password     String
   email        String         @unique
@@ -18,8 +18,8 @@ model Users {
 }
 
 model Publications {
-  id               Int      @id @default(autoincrement())
-  userId           Int
+  id               String   @id @default(uuid())
+  userId           String
   text             String
   imageUrl         String?
   createdAt        DateTime @default(now())
@@ -30,9 +30,9 @@ model Publications {
 }
 
 model Comments {
-  id            Int      @id @default(autoincrement())
-  userId        Int
-  publicationId Int
+  id            String   @id @default(uuid())
+  userId        String
+  publicationId String
   text          String
   createdAt     DateTime @default(now())
 
