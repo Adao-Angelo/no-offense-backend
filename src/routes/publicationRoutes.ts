@@ -9,7 +9,8 @@ const router = Router();
 router.use(ensureAuthenticated);
 
 router.post("/", async (req, res) => {
-  const { text, url, userId } = req.body;
+  const userId = req.user.id;
+  const { text, url } = req.body;
   const imageDescription = await fetchImageDescription(url);
 
   // Save the image description and user_id to a database or file

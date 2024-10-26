@@ -4,8 +4,9 @@ import jwt from "jsonwebtoken";
 import { AppError } from "../error";
 
 interface IPayLoad {
-  sub: string;
+  userId: string;
 }
+
 export async function ensureAuthenticated(
   request: Request,
   response: Response,
@@ -16,14 +17,17 @@ export async function ensureAuthenticated(
     throw new AppError("Token missing", 401);
   }
   const [, token] = authHeader.split(" ");
+
   try {
-    const { sub: userId } = jwt.verify(
+    const { userId: userId } = jwt.verify(
       token,
       process.env.JWT_SECRET || ""
     ) as IPayLoad;
 
     const userRepository = new UserRepository();
     const user = userRepository.findUserById(userId);
+
+    console.log("userId: ", userId);
 
     if (!user) {
       throw new AppError("User does not exists!", 401);

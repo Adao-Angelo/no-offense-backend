@@ -33,7 +33,7 @@ router.post("/", async (req, res) => {
   /** generate token */
   const token = jwt.sign(
     { userId: userExists.id },
-    process.env.JWT_SECRET || "noOffense",
+    process.env.JWT_SECRET || "",
     {
       expiresIn: "1d",
     }
