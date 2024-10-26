@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "tsx watch ./src/index.ts",
-    "biuld": "tsup src",
+    "build": "tsup src --format esm",
     "migrate": "npx prisma migrate dev",
     "start": "node dist/index.js",
     "test": "vitest"

@@ -10,13 +10,12 @@ import bcrypt from "bcrypt";
 import path from "path";
 import fs from "fs";
 import jwt from "jsonwebtoken";
-import { fileURLToPath } from "url";
 import { SendVerificationEmails } from "../../../services";
 
 const userRepository = new UserRepository();
 const SALT_ROUNDS = Number(process.env.SALT_ROUNDS) || 8;
 
-const __filename = fileURLToPath(import.meta.url);
+const __filename = path.resolve();
 const __dirname = path.dirname(__filename);
 
 const pendingUsersPath = path.join(
