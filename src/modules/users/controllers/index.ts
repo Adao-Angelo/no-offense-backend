@@ -8,7 +8,6 @@ import { CreateUserDTO, UpdateUserDTO } from "../ types";
 import { AppError } from "../../../error";
 import bcrypt from "bcrypt";
 import path from "path";
-import { fileURLToPath } from "url";
 import fs from "fs";
 import jwt from "jsonwebtoken";
 import { SendVerificationEmails } from "../../../services";
@@ -16,7 +15,7 @@ import { SendVerificationEmails } from "../../../services";
 const userRepository = new UserRepository();
 const SALT_ROUNDS = Number(process.env.SALT_ROUNDS) || 8;
 
-const __filename = fileURLToPath(import.meta.url);
+const __filename = new URL(import.meta.url).pathname;
 const __dirname = path.dirname(__filename);
 
 const pendingUsersPath = path.join(
