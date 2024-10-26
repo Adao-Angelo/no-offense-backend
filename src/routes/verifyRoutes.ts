@@ -9,13 +9,7 @@ import { CreateUserDTO } from "../modules/users/ types";
 const router = Router();
 const userRepository = new UserRepository();
 
-const __filename = new URL(import.meta.url).pathname;
-const __dirname = path.dirname(__filename);
-
-const pendingUsersPath = path.join(
-  __dirname,
-  "../../temp/pendingUsersConfirm.json"
-);
+const pendingUsersPath = path.resolve("temp/pendingUsersConfirm.json");
 
 router.get("/", async (req, res) => {
   const { token } = req.query;

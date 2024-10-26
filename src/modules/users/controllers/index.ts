@@ -15,15 +15,7 @@ import { SendVerificationEmails } from "../../../services";
 const userRepository = new UserRepository();
 const SALT_ROUNDS = Number(process.env.SALT_ROUNDS) || 8;
 
-const __filename = new URL(import.meta.url).pathname;
-const __dirname = path.dirname(__filename);
-
-const pendingUsersPath = path.join(
-  __dirname,
-  "../../../../temp/pendingUsersConfirm.json"
-);
-
-console.log(pendingUsersPath);
+const pendingUsersPath = path.resolve("temp/pendingUsersConfirm.json");
 
 export class UserController {
   async createUser(req: Request, res: Response) {
