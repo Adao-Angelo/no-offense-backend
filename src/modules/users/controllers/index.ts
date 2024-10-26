@@ -24,6 +24,8 @@ const pendingUsersPath = path.join(
   "../../../../temp/pendingUsersConfirm.json"
 );
 
+console.log(pendingUsersPath);
+
 export class UserController {
   async createUser(req: Request, res: Response) {
     const data: CreateUserDTO = req.body;
