@@ -45,6 +45,8 @@ export class UserController {
 
     await SendVerificationEmails(data.email, token);
 
+    pendingUsers = pendingUsers.filter((user) => user.email !== data.email);
+
     const userInPendingList = pendingUsers.filter((user) => {
       user.email === data.email;
     });
