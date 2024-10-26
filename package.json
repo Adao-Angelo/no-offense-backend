@@ -6,9 +6,9 @@
   "type": "module",
   "scripts": {
     "dev": "tsx watch ./src/index.ts",
-    "build": "tsup src --format esm",
+    "build": "tsup src",
     "migrate": "npx prisma migrate dev",
-    "start": "node dist/index.js",
+    "start": "node dist/index.cjs",
     "test": "vitest"
   },
   "keywords": [],
