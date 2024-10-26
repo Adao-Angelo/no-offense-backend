@@ -2,8 +2,11 @@ import { Router } from "express";
 import { fetchImageDescription } from "../services/fetchImageDescription";
 import { prisma } from "../config/prisma";
 import { AppError } from "../error/appError";
+import { ensureAuthenticated } from "../middlewares";
 
 const router = Router();
+
+router.use(ensureAuthenticated);
 
 router.post("/", async (req, res) => {
   const { text, url, userId } = req.body;

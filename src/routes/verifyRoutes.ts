@@ -13,7 +13,10 @@ const userRepository = new UserRepository();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const pendingUsersPath = path.join(__dirname, "../../temp/pendingUsers.json");
+const pendingUsersPath = path.join(
+  __dirname,
+  "../../temp/pendingUsersConfirm.json"
+);
 
 router.get("/", async (req, res) => {
   const { token } = req.query;
@@ -27,6 +30,9 @@ router.get("/", async (req, res) => {
   ) as { email: string };
 
   let pendingUsers: CreateUserDTO[] = [];
+
+  console.log(pendingUsersPath);
+
   if (fs.existsSync(pendingUsersPath)) {
     const data = fs.readFileSync(pendingUsersPath, "utf-8");
     pendingUsers = JSON.parse(data);
