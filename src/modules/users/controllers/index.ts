@@ -11,7 +11,7 @@ import path from "path";
 import fs from "fs";
 import jwt from "jsonwebtoken";
 import { fileURLToPath } from "url";
-import { SendVerificationEmails } from "../../../services/sendVerificationEmails";
+import { SendVerificationEmails } from "../../../services";
 
 const userRepository = new UserRepository();
 const SALT_ROUNDS = Number(process.env.SALT_ROUNDS) || 8;

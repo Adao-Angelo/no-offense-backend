@@ -5,11 +5,3 @@ declare namespace Express {
     };
   }
 }
-
-declare namespace Express {
-  export interface Request {
-    firebase: {
-      firebaseUrl: string;
-    };
-  }
-}

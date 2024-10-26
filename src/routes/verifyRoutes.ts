@@ -15,7 +15,7 @@ const __dirname = path.dirname(__filename);
 
 const pendingUsersPath = path.join(__dirname, "../../temp/pendingUsers.json");
 
-router.post("/", async (req, res) => {
+router.get("/", async (req, res) => {
   const { token } = req.query;
 
   if (!token) {

@@ -6,11 +6,8 @@ import { AppError } from "../error/appError";
 const router = Router();
 
 router.post("/", async (req, res) => {
-  const { text, url } = req.body;
+  const { text, url, userId } = req.body;
   const imageDescription = await fetchImageDescription(url);
-  const userId = "00f57bca-68a5-4337-a6b3-515c73ae4313";
-
-  console.log(imageDescription);
 
   // Save the image description and user_id to a database or file
 
@@ -18,7 +15,7 @@ router.post("/", async (req, res) => {
     data: { text, imageUrl: url, imageDescription, userId },
   });
 
-  res.status(200).json({ message: "publication created" });
+  res.status(201).json({ message: "publication created" });
 });
 
 router.get("/", async (req, res) => {
