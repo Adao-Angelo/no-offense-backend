@@ -2,6 +2,7 @@ import { Router } from "express";
 import fs from "fs";
 import path from "path";
 import jwt from "jsonwebtoken";
+import { fileURLToPath } from "url";
 import { AppError } from "../error";
 import { UserRepository } from "../modules/users/repositories";
 import { CreateUserDTO } from "../modules/users/ types";
@@ -9,7 +10,7 @@ import { CreateUserDTO } from "../modules/users/ types";
 const router = Router();
 const userRepository = new UserRepository();
 
-const __filename = path.resolve();
+const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const pendingUsersPath = path.join(
