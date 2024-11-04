@@ -45,6 +45,8 @@ export class UserController {
 
     await SendVerificationEmails(data.email, token);
 
+    console.log(`${process.env.APP_URL}/verify?token=${token}`);
+
     pendingUsers = pendingUsers.filter((user) => user.email !== data.email);
 
     const userInPendingList = pendingUsers.filter((user) => {

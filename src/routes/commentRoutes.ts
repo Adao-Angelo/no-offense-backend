@@ -1,10 +1,29 @@
 import { Router } from "express";
-// import { createComment, getComments } from "../controllers/commentController";
+import { prisma } from "../config/prisma";
+import { AppError } from "../error/appError";
+import { ensureAuthenticated } from "../middlewares";
 
-const router = Router();
+const CommentsRouter = Router();
 
-// // Rotas de comentários
-// router.post("/", createComment); // Rota para criar um comentário
-// router.get("/publications/:id", getComments); // Rota para listar comentários de uma publicação específica
+CommentsRouter.use(ensureAuthenticated);
 
-export default router;
+CommentsRouter.post("/", async (request, response) => {
+  const userId = request.user.id;
+  const { publicationId, text } = request.body;
+
+  try {
+    await prisma.comments.create({
+      data: {
+        userId,
+        publicationId,
+        text,
+      },
+    });
+  } catch {
+    throw new AppError("Error on create comment");
+  }
+
+  response.status(201).json({ message: "comment created" });
+});
+
+export default CommentsRouter;
