@@ -16,6 +16,7 @@ publicationRouter.post("/", async (req, res) => {
 
   if (imageUrl && imageUrl.length > 5 && imageUrl != "") {
     imageDescription = await fetchImageDescription(imageUrl);
+    console.log(imageDescription);
   }
 
   // Save the image description and user_id to a database or file

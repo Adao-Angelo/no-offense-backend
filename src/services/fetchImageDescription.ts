@@ -13,6 +13,7 @@ const fetchImageDescription = async (url: string): Promise<string> => {
         url: url,
       },
     });
+
     return response.data[0].generated_text;
   } catch (error) {
     throw new Error("Could not fetch description");
