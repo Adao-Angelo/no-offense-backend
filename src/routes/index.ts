@@ -7,10 +7,10 @@ import verify from "./verifyRoutes";
 
 const router = Router();
 
-router.use("/users", userRoutes); // Rotas de usuários
-router.use("/publications", publicationRoutes); // Rotas de publicações
-router.use("/comments", commentRoutes); // Rotas de comentários
-router.use("/auth", authRoutes); // Rotas de autenticação
-router.use("/verify", verify); // Rotas de verificação de email
+router.use("/users", userRoutes);
+router.use("/publications", publicationRoutes);
+router.use("/comments", commentRoutes);
+router.use("/auth", authRoutes);
+router.use("/verify", verify);
 
 export default router;
