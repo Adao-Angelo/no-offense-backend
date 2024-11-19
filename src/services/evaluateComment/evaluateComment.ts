@@ -9,6 +9,11 @@ export async function evaluateComment(
   postDescription: string,
   comment: string
 ): Promise<string> {
+  console.log({
+    imageDescription,
+    postDescription,
+    comment,
+  });
   try {
     const prompt = `
       Consider the following scenario:

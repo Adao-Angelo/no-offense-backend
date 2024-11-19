@@ -3,12 +3,13 @@ import { prisma } from "../config/prisma";
 import { AppError } from "../error/appError";
 import { ensureAuthenticated } from "../middlewares";
 import { evaluateComment } from "../services";
+import { checkSanction } from "../middlewares/checkSanction";
 
 const CommentsRouter = Router();
 
 CommentsRouter.use(ensureAuthenticated);
 
-CommentsRouter.post("/", async (request, response) => {
+CommentsRouter.post("/", checkSanction, async (request, response) => {
   const userId = request.user.id;
   const { publicationId, text } = request.body;
 
