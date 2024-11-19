@@ -1,7 +1,7 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { AppError } from "../../error";
 
-const genAI = new GoogleGenerativeAI(process.env.GOOGLE_AI_KEY);
+const genAI = new GoogleGenerativeAI(process.env.GOOGLE_AI_KEY || "");
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
 export async function evaluateComment(
