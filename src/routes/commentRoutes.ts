@@ -35,7 +35,31 @@ CommentsRouter.post("/", async (request, response) => {
       ? true
       : false;
   if (isOffensive) {
-    throw new AppError("Offensive comment detected:", 400);
+    const sanction = await prisma.sanction.update({
+      where: { userId },
+      data: {
+        alerts: { increment: 1 },
+      },
+    });
+
+    if (sanction.alerts >= 3) {
+      await prisma.sanction.update({
+        where: { userId },
+        data: {
+          isBanned: true,
+          banUntil: new Date(new Date().getTime() + 24 * 60 * 60 * 1000),
+        },
+      });
+      throw new AppError(
+        "You have been banned for 24 hours due to offensive behavior.",
+        403
+      );
+    }
+
+    throw new AppError(
+      "Comment detected as offensive. This is your ${sanction.alerts}th warning.",
+      400
+    );
   } else {
     try {
       await prisma.comments.create({

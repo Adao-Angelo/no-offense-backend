@@ -39,3 +39,13 @@ model Comments {
   user        Users        @relation("UserComments", fields: [userId], references: [id])
   publication Publications @relation("PublicationComments", fields: [publicationId], references: [id])
 }
+
+model Sanction {
+  id        String    @id @default(uuid())
+  userId    String    @unique
+  alerts    Int       @default(0)
+  isBanned  Boolean   @default(false)
+  banUntil  DateTime?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
