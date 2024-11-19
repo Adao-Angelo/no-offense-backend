@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { fetchImageDescription } from "../services/fetchImageDescription";
+import { fetchImageDescription } from "../services";
 import { prisma } from "../config/prisma";
 import { AppError } from "../error/appError";
 import { ensureAuthenticated } from "../middlewares";

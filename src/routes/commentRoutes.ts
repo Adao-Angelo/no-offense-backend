@@ -2,7 +2,7 @@ import { Router } from "express";
 import { prisma } from "../config/prisma";
 import { AppError } from "../error/appError";
 import { ensureAuthenticated } from "../middlewares";
-import { evaluateComment } from "../services/evaluateComment";
+import { evaluateComment } from "../services";
 
 const CommentsRouter = Router();
 
