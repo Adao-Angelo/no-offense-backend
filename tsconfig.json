@@ -12,6 +12,10 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "strict": true
+  ,
+    "resolveJsonModule": true,
+ 
+  
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist"]
