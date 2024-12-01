@@ -58,7 +58,7 @@ CommentsRouter.post("/", checkSanction, async (request, response) => {
     }
 
     throw new AppError(
-      "Comment detected as offensive. This is your ${sanction.alerts}th warning.",
+      `Comment detected as offensive. This is your ${sanction.alerts}th warning.`,
       400
     );
   } else {
