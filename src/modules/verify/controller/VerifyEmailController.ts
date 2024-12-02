@@ -25,7 +25,7 @@ export class VerifyEmailController {
 
     let decoded;
     try {
-      decoded = jwt.verify(String(token), jwtConfig.secret) as {
+      decoded = jwt.verify(String(token), jwtConfig().secret) as {
         email: string;
       };
     } catch {

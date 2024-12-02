@@ -33,8 +33,10 @@ export class AuthenticateUserController {
       throw new AppError("Password or email Incorrect", 404);
     }
 
-    const token = jwt.sign({ userId: userExists.id }, jwtConfig.secret, {
-      expiresIn: jwtConfig.expiresIn,
+    console.log(jwtConfig);
+
+    const token = jwt.sign({ userId: userExists.id }, jwtConfig().secret, {
+      expiresIn: jwtConfig().expiresIn,
     });
 
     const response: IResponse = {
