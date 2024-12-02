@@ -1,8 +1,8 @@
-import { Router } from "express";
-import { prisma } from "../config/prisma";
 import { compare } from "bcrypt";
-import { AppError } from "../error/appError";
+import { Router } from "express";
 import jwt from "jsonwebtoken";
+import { prisma } from "../config/prisma";
+import { AppError } from "../error/appError";
 
 const router = Router();
 

@@ -6,12 +6,12 @@ import { AppError } from "../error";
 import { CreateUserDTO } from "../modules/users/dtos";
 import { UserRepository } from "../modules/users/repositories";
 
-const router = Router();
+const verifyEmail = Router();
 const userRepository = new UserRepository();
 
 const pendingUsersPath = path.resolve("temp/pendingUsersConfirm.json");
 
-router.get("/", async (req, res) => {
+verifyEmail.get("/", async (req, res) => {
   const { token } = req.query;
 
   if (!token) {
@@ -58,4 +58,4 @@ router.get("/", async (req, res) => {
   // res.redirect("https://www.google.com");
 });
 
-export default router;
+export default verifyEmail;
