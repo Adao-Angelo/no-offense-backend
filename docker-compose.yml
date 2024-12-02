@@ -8,9 +8,8 @@ services:
       POSTGRES_USER: docker
       POSTGRES_PASSWORD: docker
       POSTGRES_DB: polls
-      
     volumes:
       - polls_pg_data:/bitnami/postgresql
 
+volumes:
   polls_pg_data:
-  

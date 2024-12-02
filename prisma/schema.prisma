@@ -10,7 +10,7 @@ datasource db {
 model Users {
   id           String         @id @default(uuid())
   name         String
-  admin        Boolean        @default(false)
+  admin        Boolean?       @default(false)
   password     String
   email        String         @unique
   createdAt    DateTime       @default(now())
