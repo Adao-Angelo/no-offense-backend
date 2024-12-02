@@ -2,15 +2,15 @@
  * UserController handles HTTP requests for user operations such as creating, retrieving, updating, and deleting users. It interacts with UserRepository for database actions, ensuring proper handling of user data and returning appropriate responses, including error handling.
  */
 
-import { Request, Response } from "express";
-import { UserRepository } from "../repositories";
-import { CreateUserDTO, UpdateUserDTO } from "../ types";
-import { AppError } from "../../../error";
 import bcrypt from "bcrypt";
-import path from "path";
+import { Request, Response } from "express";
 import fs from "fs";
 import jwt from "jsonwebtoken";
+import path from "path";
+import { AppError } from "../../../error";
 import { SendVerificationEmails } from "../../../services";
+import { CreateUserDTO, UpdateUserDTO } from "../dtos";
+import { UserRepository } from "../repositories";
 
 const userRepository = new UserRepository();
 const SALT_ROUNDS = Number(process.env.SALT_ROUNDS) || 8;

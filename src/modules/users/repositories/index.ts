@@ -5,7 +5,7 @@
  */
 
 import { prisma } from "../../../config/prisma";
-import { CreateUserDTO, UpdateUserDTO } from "../ types";
+import { CreateUserDTO, UpdateUserDTO } from "../dtos";
 
 export class UserRepository {
   async createUser({ name, email, password }: CreateUserDTO) {

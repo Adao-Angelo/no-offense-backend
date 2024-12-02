@@ -24,4 +24,4 @@ services:
 
 volumes:
   polls_pg_data:
-  polls_redis_data:
+  # polls_redis_data:
