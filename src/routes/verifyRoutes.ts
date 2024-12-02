@@ -1,61 +1,11 @@
 import { Router } from "express";
-import fs from "fs";
-import jwt from "jsonwebtoken";
-import path from "path";
-import { AppError } from "../error";
-import { CreateUserDTO } from "../modules/users/dtos";
-import { UserRepository } from "../modules/users/repositories";
+import { VerifyEmailController } from "../modules/verify/controller/VerifyEmailController";
 
-const verifyEmail = Router();
-const userRepository = new UserRepository();
+const verifyEmailRouter = Router();
+const verifyEmailController = new VerifyEmailController();
 
-const pendingUsersPath = path.resolve("temp/pendingUsersConfirm.json");
-
-verifyEmail.get("/", async (req, res) => {
-  const { token } = req.query;
-
-  if (!token) {
-    throw new AppError("Token not provided", 401);
-  }
-  const decoded = jwt.verify(
-    String(token),
-    process.env.JWT_SECRET as string
-  ) as { email: string };
-
-  let pendingUsers: CreateUserDTO[] = [];
-
-  console.log(pendingUsersPath);
-
-  if (fs.existsSync(pendingUsersPath)) {
-    const data = fs.readFileSync(pendingUsersPath, "utf-8");
-    pendingUsers = JSON.parse(data);
-  }
-
-  const userIndex = pendingUsers.findIndex((u) => u.email === decoded.email);
-
-  if (userIndex === -1) {
-    throw new Error("Invalid or expired token");
-  }
-
-  const user = pendingUsers[userIndex];
-
-  if (!user) {
-    throw new Error("Invalid or expired token");
-  }
-
-  const data: CreateUserDTO = {
-    name: user.name,
-    email: user.email,
-    password: user.password,
-  };
-
-  pendingUsers.splice(userIndex, 1);
-  fs.writeFileSync(pendingUsersPath, JSON.stringify(pendingUsers));
-
-  const newUser = await userRepository.createUser(data);
-  res.status(201).json(newUser);
-
-  // res.redirect("https://www.google.com");
+verifyEmailRouter.get("/", (req, res) => {
+  verifyEmailController.handle(req, res);
 });
 
-export default verifyEmail;
+export default verifyEmailRouter;
