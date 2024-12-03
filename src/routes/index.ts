@@ -8,6 +8,7 @@ import verifyEmail from "./verifyRoutes";
 
 import swaggerUi from "swagger-ui-express";
 import swaggerDocument from "../../docs/swagger.json";
+import uploadImageRouter from "./uploadImageRoutes";
 
 const router = Router();
 
@@ -17,6 +18,7 @@ router.use("/comments", commentRoutes);
 router.use("/auth", authRoutes);
 router.use("/verifyEmail", verifyEmail);
 router.use("/sanction", sanctionRouter);
+router.use("/upload", uploadImageRouter);
 router.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 export default router;
