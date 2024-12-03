@@ -1,7 +1,7 @@
 import { Router } from "express";
 
-const uploadImageRouter = Router();
+const uploadRouter = Router();
 
-uploadImageRouter.post("/", (req, res) => {});
+uploadRouter.post("/", (req, res) => {});
 
-export default uploadImageRouter;
+export default uploadRouter;
