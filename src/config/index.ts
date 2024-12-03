@@ -1,3 +1,3 @@
-export * from "./jwt";
+export * from "./jwt/jwt";
 export * from "./nodeMailer";
 export * from "./prisma";

@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
-import { UserRepository } from "../modules/users/repositories";
 import jwt from "jsonwebtoken";
 import { AppError } from "../error";
+import { UserRepository } from "../modules/users/repositories";
 
 interface IPayLoad {
   userId: string;
@@ -21,7 +21,7 @@ export async function ensureAuthenticated(
   try {
     const { userId: userId } = jwt.verify(
       token,
-      process.env.JWT_SECRET || ""
+      process.env.JWT_SECRET as string
     ) as IPayLoad;
 
     const userRepository = new UserRepository();

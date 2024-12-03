@@ -18,7 +18,6 @@ export class PublicationController {
 
     if (imageUrl && imageUrl.length > 5 && imageUrl !== "") {
       imageDescription = await fetchImageDescription(imageUrl);
-      console.log(imageDescription);
     }
 
     const publication = await this.publicationRepository.create({

@@ -5,11 +5,12 @@
     "version": "1.0.0",
     "description": "API to manage users, posts, and comments."
   },
-
   "paths": {
     "/users": {
       "get": {
-        "tags": ["User"],
+        "tags": [
+          "User"
+        ],
         "summary": "List all users",
         "responses": {
           "200": {
@@ -28,7 +29,9 @@
         }
       },
       "post": {
-        "tags": ["User"],
+        "tags": [
+          "User"
+        ],
         "summary": "Create a new user",
         "requestBody": {
           "required": true,
@@ -56,7 +59,9 @@
     },
     "/users/{userId}": {
       "get": {
-        "tags": ["User"],
+        "tags": [
+          "User"
+        ],
         "summary": "Get a user by ID",
         "parameters": [
           {
@@ -85,7 +90,9 @@
         }
       },
       "put": {
-        "tags": ["User"],
+        "tags": [
+          "User"
+        ],
         "summary": "Update a user",
         "parameters": [
           {
@@ -124,7 +131,9 @@
         }
       },
       "delete": {
-        "tags": ["User"],
+        "tags": [
+          "User"
+        ],
         "summary": "Delete a user",
         "parameters": [
           {
@@ -148,7 +157,9 @@
     },
     "/publications": {
       "get": {
-        "tags": ["Publication"],
+        "tags": [
+          "Publication"
+        ],
         "summary": "List all posts",
         "responses": {
           "200": {
@@ -167,7 +178,9 @@
         }
       },
       "post": {
-        "tags": ["Publication"],
+        "tags": [
+          "Publication"
+        ],
         "summary": "Create a new post",
         "requestBody": {
           "required": true,
@@ -195,7 +208,9 @@
     },
     "/publications/{publicationId}": {
       "get": {
-        "tags": ["Publication"],
+        "tags": [
+          "Publication"
+        ],
         "summary": "Get a post by ID",
         "parameters": [
           {
@@ -224,7 +239,9 @@
         }
       },
       "put": {
-        "tags": ["Publication"],
+        "tags": [
+          "Publication"
+        ],
         "summary": "Update a post",
         "parameters": [
           {
@@ -263,7 +280,9 @@
         }
       },
       "delete": {
-        "tags": ["Publication"],
+        "tags": [
+          "Publication"
+        ],
         "summary": "Delete a post",
         "parameters": [
           {
@@ -287,7 +306,9 @@
     },
     "/comments": {
       "get": {
-        "tags": ["Comments"],
+        "tags": [
+          "Comments"
+        ],
         "summary": "List all comments",
         "responses": {
           "200": {
@@ -306,7 +327,9 @@
         }
       },
       "post": {
-        "tags": ["Comments"],
+        "tags": [
+          "Comments"
+        ],
         "summary": "Create a new comment",
         "requestBody": {
           "required": true,
@@ -334,7 +357,9 @@
     },
     "/comments/{commentId}": {
       "get": {
-        "tags": ["Comments"],
+        "tags": [
+          "Comments"
+        ],
         "summary": "Get a comment by ID",
         "parameters": [
           {
@@ -363,7 +388,9 @@
         }
       },
       "put": {
-        "tags": ["Comments"],
+        "tags": [
+          "Comments"
+        ],
         "summary": "Update a comment",
         "parameters": [
           {
@@ -402,7 +429,9 @@
         }
       },
       "delete": {
-        "tags": ["Comments"],
+        "tags": [
+          "Comments"
+        ],
         "summary": "Delete a comment",
         "parameters": [
           {
@@ -438,6 +467,15 @@
           },
           "email": {
             "type": "string"
+          },
+          "admin": {
+            "type": "boolean"
+          },
+          "password": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "date"
           }
         }
       },
@@ -449,6 +487,9 @@
           },
           "email": {
             "type": "string"
+          },
+          "password": {
+            "type": "string"
           }
         }
       },
@@ -459,6 +500,9 @@
             "type": "string"
           },
           "email": {
+            "type": "string"
+          },
+          "password": {
             "type": "string"
           }
         }

@@ -4,8 +4,8 @@ import { VerifyEmailController } from "../modules/verify/controller/VerifyEmailC
 const verifyEmailRouter = Router();
 const verifyEmailController = new VerifyEmailController();
 
-verifyEmailRouter.get("/", (req, res) => {
-  verifyEmailController.handle(req, res);
+verifyEmailRouter.get("/", async (req, res) => {
+  await verifyEmailController.handle(req, res);
 });
 
 export default verifyEmailRouter;

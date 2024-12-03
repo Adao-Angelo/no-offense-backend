@@ -1,9 +1,9 @@
+import cors from "cors";
 import express from "express";
 import "express-async-errors";
 import morgan from "morgan";
-import cors from "cors";
-import routes from "./routes";
 import { errorHandler } from "./middlewares";
+import routes from "./routes";
 
 const app = express();
 

@@ -13,11 +13,11 @@ const commentController = new CommentController(commentService);
 
 commentRouter.use(ensureAuthenticated);
 
-commentRouter.post("/", checkSanction, (req, res) => {
-  commentController.create(req, res);
+commentRouter.post("/", checkSanction, async (req, res) => {
+  await commentController.create(req, res);
 });
-commentRouter.get("/", (req, res) => {
-  commentController.getByUserId(req, res);
+commentRouter.get("/", async (req, res) => {
+  await commentController.getByUserId(req, res);
 });
 
 export default commentRouter;

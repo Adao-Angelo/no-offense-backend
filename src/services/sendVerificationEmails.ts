@@ -1,7 +1,7 @@
 import { smtp } from "../config";
 
 export async function SendVerificationEmails(email: string, token: string) {
-  const url = `${process.env.APP_URL}/verify?token=${token}`;
+  const url = `${process.env.APP_URL}/verifyEmail?token=${token}`;
 
   await smtp.sendMail({
     from: process.env.SENDER_EMAIL,

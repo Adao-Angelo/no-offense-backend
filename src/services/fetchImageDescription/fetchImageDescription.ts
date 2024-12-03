@@ -1,10 +1,13 @@
 import axios from "axios";
+import { AppError } from "../../error";
 
 const fetchImageDescription = async (url: string): Promise<string> => {
   const serviceUrl = process.env.FETCH_IMAGE_DESCRIPTION_SERVICE_URL;
 
   if (!serviceUrl) {
-    throw new Error("SERVICE_URL is not defined in the environment variables.");
+    throw new AppError(
+      "SERVICE_URL is not defined in the environment variables."
+    );
   }
 
   try {
@@ -16,7 +19,7 @@ const fetchImageDescription = async (url: string): Promise<string> => {
 
     return response.data[0].generated_text;
   } catch (error) {
-    throw new Error("Could not fetch description");
+    throw new AppError("Could not fetch description");
   }
 };
 

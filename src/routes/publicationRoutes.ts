@@ -16,14 +16,14 @@ const publicationController = new PublicationController(
 
 publicationRouter.use(ensureAuthenticated);
 
-publicationRouter.post("/", (req, res) => {
-  publicationController.create(req, res);
+publicationRouter.post("/", async (req, res) => {
+  await publicationController.create(req, res);
 });
-publicationRouter.get("/", (req, res) => {
-  publicationController.getAll(req, res);
+publicationRouter.get("/", async (req, res) => {
+  await publicationController.getAll(req, res);
 });
-publicationRouter.delete("/:id", (req, res) => {
-  publicationController.delete(req, res);
+publicationRouter.delete("/:id", async (req, res) => {
+  await publicationController.delete(req, res);
 });
 
 export default publicationRouter;

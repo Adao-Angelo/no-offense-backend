@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "tsx watch ./src/index.ts",
+    "seed:admin": "tsx ./src/seed/admin.ts",
     "build": "tsup src",
     "migrate": "npx prisma migrate dev",
     "start": "node dist/index.cjs",

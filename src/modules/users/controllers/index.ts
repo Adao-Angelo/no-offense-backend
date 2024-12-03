@@ -2,7 +2,7 @@
  * UserController handles HTTP requests for user operations such as creating, retrieving, updating, and deleting users. It interacts with UserRepository for database actions, ensuring proper handling of user data and returning appropriate responses, including error handling.
  */
 
-import bcrypt from "bcrypt";
+import bcrypt, { hash } from "bcrypt";
 import { Request, Response } from "express";
 import fs from "fs";
 import jwt from "jsonwebtoken";
@@ -91,6 +91,7 @@ export class UserController {
   async updateUser(req: Request, res: Response) {
     const { id } = req.params;
     const data: UpdateUserDTO = req.body;
+    data.password = await hash(data.password as string, 10);
     const updatedUser = await userRepository.updateUser(id, data);
     res.status(200).json(updatedUser);
   }

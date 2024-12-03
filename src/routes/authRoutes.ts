@@ -4,8 +4,8 @@ import { AuthenticateUserController } from "../modules/authenticate/controller/A
 const authenticateUserRouter = Router();
 const authenticateUserController = new AuthenticateUserController();
 
-authenticateUserRouter.post("/", (req, res) => {
-  authenticateUserController.handle(req, res);
+authenticateUserRouter.post("/", async (req, res) => {
+  await authenticateUserController.handle(req, res);
 });
 
 export default authenticateUserRouter;

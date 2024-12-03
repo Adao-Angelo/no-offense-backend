@@ -8,9 +8,9 @@ import { prisma } from "../../../config/prisma";
 import { CreateUserDTO, UpdateUserDTO } from "../dtos";
 
 export class UserRepository {
-  async createUser({ name, email, password }: CreateUserDTO) {
+  async createUser({ name, email, password, admin }: CreateUserDTO) {
     return await prisma.users.create({
-      data: { name, email, password },
+      data: { name, email, password, admin },
     });
   }
 
